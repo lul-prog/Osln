@@ -1,0 +1,98 @@
+plugins {
+    id 'eclipse'
+    id 'idea'
+    id 'maven-publish'
+    id 'net.minecraftforge.gradle' version '[6.0,6.2)'
+    id 'org.spongepowered.mixin' version '0.7-SNAPSHOT'
+}
+
+version = '1.0.0'
+group = 'com.nanookmod'
+
+base {
+    archivesName = 'nanookmod'
+}
+
+java.toolchain.languageVersion = JavaLanguageVersion.of(17)
+
+println "Java: ${System.getProperty 'java.version'}, JVM: ${System.getProperty 'java.vm.version'} (${System.getProperty 'java.vendor'}), Arch: ${System.getProperty 'os.arch'}"
+
+minecraft {
+    mappings channel: 'official', version: '1.20.1'
+
+    runs {
+        client {
+            workingDirectory project.file('run')
+            property 'forge.logging.console.level', 'debug'
+            mods {
+                nanookmod {
+                    source sourceSets.main
+                }
+            }
+        }
+
+        server {
+            workingDirectory project.file('run')
+            property 'forge.logging.console.level', 'debug'
+            mods {
+                nanookmod {
+                    source sourceSets.main
+                }
+            }
+        }
+    }
+}
+
+sourceSets.main.resources { srcDir 'src/main/resources' }
+
+mixin {
+    add sourceSets.main, 'nanookmod.refmap.json'
+}
+
+repositories {
+    maven {
+        // Repositorio oficial de GeckoLib
+        url "https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/"
+        content {
+            includeGroup "software.bernie.geckolib"
+        }
+    }
+    maven {
+        url = "https://maven.minecraftforge.net/"
+    }
+    maven {
+        name = 'Glitchfiend Maven'
+        url = 'https://maven.glitchfiend.net/releases'
+    }
+}
+
+dependencies {
+    minecraft 'net.minecraftforge:forge:1.20.1-47.2.0'
+
+    // GeckoLib: librería para animaciones custom
+    implementation fg.deobf('software.bernie.geckolib:geckolib-forge-1.20.1:4.4.5')
+
+    // TerraBlender: para biomas personalizados
+    implementation fg.deobf("com.github.glitchfiend:TerraBlender-forge:1.20.1-3.0.0.169")
+}
+
+tasks.named('processResources', ProcessResources).configure {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    var replaceProperties = [
+            minecraft_version: '1.20.1',
+            minecraft_version_range: '[1.20.1,1.21)',
+            forge_version: '47.2.0',
+            forge_version_range: '[47,)',
+            loader_version_range: '[47,)',
+            mod_id: 'nanookmod',
+            mod_name: 'Nanook Mod',
+            mod_license: 'All Rights Reserved',
+            mod_version: project.version,
+            mod_authors: 'Tu Nombre',
+            mod_description: 'Mod de criaturas, jefes, minerales y equipo para la serie.',
+    ]
+    inputs.properties replaceProperties
+    filesMatching(['META-INF/mods.toml']) {
+        expand replaceProperties + [project: project]
+    }
+}
