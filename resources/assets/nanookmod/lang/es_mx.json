@@ -1,0 +1,21 @@
+{
+  "entity.nanookmod.nanook": "Nanook",
+  "effect.nanookmod.permafrost_immunity": "Inmunidad al Permafrost",
+  "item.nanookmod.greater_permafrost_potion": "Poción de Inmunidad Total al Permafrost",
+  "tooltip.nanookmod.permafrost_immunity.effect": "Inmunidad al Permafrost",
+  "tooltip.nanookmod.when_applied": "Al Aplicar:",
+  "tooltip.nanookmod.permafrost_potion.desc1": "Evita la muerte por Permafrost",
+  "tooltip.nanookmod.permafrost_potion.desc2": "La lentitud y el temblor siguen ocurriendo",
+  "tooltip.nanookmod.greater_permafrost_potion.desc1": "Inmunidad total al Permafrost",
+  "tooltip.nanookmod.greater_permafrost_potion.desc2": "La carga ya no se acumula",
+  "block.nanookmod.frost_brewing_stand": "Mesa de Elixires",
+  "container.nanookmod.frost_brewing_stand": "Mesa de Elixires",
+  "item.nanookmod.frost_bottle": "Botella de Escarcha",
+  "item.nanookmod.permafrost_potion": "Poción de Inmunidad al Permafrost",
+  "item.nanookmod.blizz_rod": "Vara de Blizz",
+  "item.nanookmod.blizz_rod_powder": "Polvo de Vara de Blizz",
+  "item.nanookmod.frost_bottle": "Botella de Escarcha",
+  "item.nanookmod.permafrost_potion": "Poción de Inmunidad al Permafrost",
+  "item.nanookmod.frost_bottle_empty": "Botella de Escarcha Vacía",
+  "item.nanookmod.frost_bottle": "Botella de Escarcha con Agua"
+}
