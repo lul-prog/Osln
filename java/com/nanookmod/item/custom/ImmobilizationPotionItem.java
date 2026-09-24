@@ -1,0 +1,97 @@
+package com.nanookmod.item.custom;
+
+import com.nanookmod.registry.ModEffects;
+import com.nanookmod.registry.ModItems;
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.UseAnim;
+import net.minecraft.world.level.Level;
+
+import javax.annotation.Nullable;
+import java.util.List;
+
+/**
+ * Poción de Inmovilización: al beberla, el jugador sufre el efecto
+ * IMMOBILIZATION (tipo stun) durante 10 segundos: no puede moverse con
+ * el teclado ni girar la cámara con el ratón.
+ */
+public class ImmobilizationPotionItem extends Item {
+
+    private static final int DURATION_TICKS = 200; // 10 segundos
+
+    public ImmobilizationPotionItem(Properties properties) {
+        super(properties.stacksTo(1)); // Solo 1 por stack
+    }
+
+    @Override
+    public boolean isFoil(ItemStack stack) {
+        return true; // Brillo de encantamiento, como las demás pociones
+    }
+
+    @Override
+    public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltip, TooltipFlag flag) {
+        tooltip.add(Component.translatable("tooltip.nanookmod.immobilization.effect")
+                .append(" (" + formatDuration(DURATION_TICKS) + ")")
+                .withStyle(ChatFormatting.LIGHT_PURPLE));
+
+        tooltip.add(Component.empty());
+        tooltip.add(Component.translatable("tooltip.nanookmod.when_applied").withStyle(ChatFormatting.GRAY));
+        tooltip.add(Component.translatable("tooltip.nanookmod.immobilization_potion.desc1").withStyle(ChatFormatting.LIGHT_PURPLE));
+        tooltip.add(Component.translatable("tooltip.nanookmod.immobilization_potion.desc2").withStyle(ChatFormatting.DARK_GRAY, ChatFormatting.ITALIC));
+    }
+
+    private static String formatDuration(int ticks) {
+        int totalSeconds = ticks / 20;
+        int minutes = totalSeconds / 60;
+        int seconds = totalSeconds % 60;
+        return String.format("%02d:%02d", minutes, seconds);
+    }
+
+    @Override
+    public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
+        player.startUsingItem(hand);
+        return InteractionResultHolder.consume(player.getItemInHand(hand));
+    }
+
+    @Override
+    public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity entity) {
+        if (entity instanceof Player player && !level.isClientSide) {
+            player.addEffect(new MobEffectInstance(
+                    ModEffects.IMMOBILIZATION.get(),
+                    DURATION_TICKS, // 10 segundos de stun
+                    0,              // amplificador
+                    false,
+                    true            // visible (partículas) para notar el efecto
+            ));
+        }
+
+        ItemStack frostBottleEmpty = new ItemStack(ModItems.FROST_BOTTLE_EMPTY.get());
+
+        if (entity instanceof Player player && !player.getAbilities().instabuild) {
+            stack.shrink(1);
+            if (!player.getInventory().add(frostBottleEmpty)) {
+                player.drop(frostBottleEmpty, false);
+            }
+        }
+
+        return frostBottleEmpty;
+    }
+
+    @Override
+    public int getUseDuration(ItemStack stack) {
+        return 32;
+    }
+
+    @Override
+    public UseAnim getUseAnimation(ItemStack stack) {
+        return UseAnim.DRINK;
+    }
+}

@@ -19,6 +19,9 @@
   "item.nanookmod.permafrost_potion": "Permafrost Immunity Potion",
   "item.nanookmod.blizz_rod": "Blizz Rod",
   "item.nanookmod.blizz_rod_powder": "Blizz Rod Powder",
-  "item.nanookmod.frost_bottle": "Frost Bottle",
-  "item.nanookmod.permafrost_potion": "Permafrost Immunity Potion"
+  "effect.nanookmod.immobilization": "Immobilization",
+  "item.nanookmod.immobilization_potion": "Potion of Immobilization",
+  "tooltip.nanookmod.immobilization.effect": "Immobilization",
+  "tooltip.nanookmod.immobilization_potion.desc1": "You cannot move or turn the camera",
+  "tooltip.nanookmod.immobilization_potion.desc2": "Stunned for a few seconds"
 }

@@ -45,6 +45,7 @@ public class ModCreativeTabs {
                         output.accept(ModItems.FROST_BOTTLE.get());
                         output.accept(ModItems.PERMAFROST_POTION.get());
                         output.accept(ModItems.GREATER_PERMAFROST_POTION.get());
+                        output.accept(ModItems.IMMOBILIZATION_POTION.get());
                     })
                     .build()
     );
