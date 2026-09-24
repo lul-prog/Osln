@@ -7,7 +7,9 @@
   "mixins": [
     "MixinSnowLayerBlock"
   ],
-  "client": [],
+  "client": [
+    "MixinMinecraftImmobilization"
+  ],
   "injectors": {
     "defaultRequire": 1
   }

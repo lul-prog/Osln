@@ -1,6 +1,7 @@
 package com.nanookmod.registry;
 
 import com.nanookmod.NanookMod;
+import com.nanookmod.effect.ImmobilizationEffect;
 import com.nanookmod.effect.PermafrostEffect;
 import com.nanookmod.effect.PermafrostImmunityEffect;
 import net.minecraft.world.effect.MobEffect;
@@ -18,4 +19,8 @@ public class ModEffects {
 
     public static final RegistryObject<MobEffect> PERMAFROST_IMMUNITY = EFFECTS.register("permafrost_immunity",
             () -> new PermafrostImmunityEffect());
+
+    // Efecto tipo "stun": bloquea el movimiento con teclado y la cámara
+    public static final RegistryObject<MobEffect> IMMOBILIZATION =
+            EFFECTS.register("immobilization", ImmobilizationEffect::new);
 }

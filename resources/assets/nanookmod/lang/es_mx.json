@@ -10,12 +10,14 @@
   "tooltip.nanookmod.greater_permafrost_potion.desc2": "La carga ya no se acumula",
   "block.nanookmod.frost_brewing_stand": "Mesa de Elixires",
   "container.nanookmod.frost_brewing_stand": "Mesa de Elixires",
-  "item.nanookmod.frost_bottle": "Botella de Escarcha",
+  "item.nanookmod.frost_bottle": "Botella de Escarcha con Agua",
   "item.nanookmod.permafrost_potion": "Poción de Inmunidad al Permafrost",
   "item.nanookmod.blizz_rod": "Vara de Blizz",
   "item.nanookmod.blizz_rod_powder": "Polvo de Vara de Blizz",
-  "item.nanookmod.frost_bottle": "Botella de Escarcha",
-  "item.nanookmod.permafrost_potion": "Poción de Inmunidad al Permafrost",
   "item.nanookmod.frost_bottle_empty": "Botella de Escarcha Vacía",
-  "item.nanookmod.frost_bottle": "Botella de Escarcha con Agua"
+  "effect.nanookmod.immobilization": "Inmovilización",
+  "item.nanookmod.immobilization_potion": "Poción de Inmovilización",
+  "tooltip.nanookmod.immobilization.effect": "Inmovilización",
+  "tooltip.nanookmod.immobilization_potion.desc1": "No puedes moverte ni girar la cámara",
+  "tooltip.nanookmod.immobilization_potion.desc2": "Aturdido durante unos segundos"
 }

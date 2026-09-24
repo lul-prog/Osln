@@ -99,4 +99,8 @@ public class ModItems {
     // Poción de Inmunidad al Permafrost MEJORADA (inmunidad total) - MAX 1, con brillo
     public static final RegistryObject<Item> GREATER_PERMAFROST_POTION = ITEMS.register("greater_permafrost_potion",
             () -> new com.nanookmod.item.custom.FrostPotionItem(new Item.Properties()));
+
+    // Poción de Inmovilización (stun: no mover cámara ni teclado) - MAX 1, con brillo
+    public static final RegistryObject<Item> IMMOBILIZATION_POTION = ITEMS.register("immobilization_potion",
+            () -> new com.nanookmod.item.custom.ImmobilizationPotionItem(new Item.Properties()));
 }
